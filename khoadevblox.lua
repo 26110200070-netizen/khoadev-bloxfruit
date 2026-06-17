@@ -3755,18 +3755,18 @@ v466:AddMinimizeButton({
     Corner = { CornerRadius = UDim.new(0.5, 0) },
 })
 
-local v484 = v466:MakeTab({"Information", "info"})
-local v485 = v466:MakeTab({"Farm", "home"})
-local v486 = v466:MakeTab({"Fishing", "rbxassetid://127664059821666"})
-local v487 = v466:MakeTab({"Quest/Items", "swords"})
-local v491 = v466:MakeTab({"Raid/Fruits", "cherry"})
-local v489 = v466:MakeTab({"Sea Event", "waves"})
-local v497 = v466:MakeTab({"Stats", "Signal"})
-local v493 = v466:MakeTab({"Teleport", "locate"})
-local v499 = v466:MakeTab({"Status", "Scroll"})
-local v494 = v466:MakeTab({"Visual", "user"})
-local v495 = v466:MakeTab({"Shop", "shoppingCart"})
-local v496 = v466:MakeTab({"Misc", "settings"})
+local v484 = v466:MakeTab({"Thông tin", "info"})
+local v485 = v466:MakeTab({"Tự động Farm", "home"})
+local v486 = v466:MakeTab({"Câu cá", "rbxassetid://127664059821666"})
+local v487 = v466:MakeTab({"Nhiệm vụ / Vật phẩm", "swords"})
+local v491 = v466:MakeTab({"Raid / Trái ác quỷ", "cherry"})
+local v489 = v466:MakeTab({"Sự kiện biển", "waves"})
+local v497 = v466:MakeTab({"Chỉ số", "Signal"})
+local v493 = v466:MakeTab({"Dịch chuyển", "locate"})
+local v499 = v466:MakeTab({"Trạng thái", "Scroll"})
+local v494 = v466:MakeTab({"Hiển thị / ESP", "user"})
+local v495 = v466:MakeTab({"Cửa hàng", "shoppingCart"})
+local v496 = v466:MakeTab({"Khác", "settings"})
 
 v484:AddDiscordInvite({
     Name = "Khoa Dev - Blox Fruit"
@@ -3809,8 +3809,8 @@ task.spawn(function()
     end
 end)
 local _ = v485:AddDropdown({
-    Name = "Select Tool",
-    Description = "Chọn Công Cụ",
+    Name = "Chọn công cụ",
+    Description = "Chọn công cụ sử dụng",
     Options = {"Melee", "Sword", "Gun", "Blox Fruit"},
     Default = "Melee",
     Flag = "WeaponType",
@@ -3820,8 +3820,8 @@ local _ = v485:AddDropdown({
 })
 
 v485:AddDropdown({
-    Name = "UI Scale",
-    Description = "Chọn Size Ui",
+    Name = "Kích thước UI",
+    Description = "Thay đổi kích cỡ giao diện",
     Options = {
         "Small",
         "Large",
@@ -3840,7 +3840,7 @@ v485:AddDropdown({
         end
     end
 })
-local _ = v485:AddSection({"Farm"})
+local _ = v485:AddSection({"Tự động Farm"})
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -3969,8 +3969,8 @@ local function CheckQuestNew()
     end
 end
 v485:AddToggle({
-    Name = "Auto Farm Level",
-    Description = "Farm Level",
+    Name = "Tự động Farm Level",
+    Description = "Tự động đánh quái tăng cấp",
     Default = false,
     Callback = function(state)
         _G.AutoFarm = state
@@ -4126,8 +4126,8 @@ spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Auto Farm Nearest",
-    Description = "Auto Farm Nearest Mobs",
+    Name = "Farm quái gần nhất",
+    Description = "Tự động gom và diệt quái ở khoảng cách gần nhất",
     Default = false,
     Callback = function(v520)
         _G.AutoNear = v520
@@ -4164,8 +4164,8 @@ end)
 
 if World3 then
 v485:AddToggle({
-    Name = "Auto Pirates Sea",
-    Description = "Farm Raid Pirate",
+    Name = "Tự động Raid Cướp Biển",
+    Description = "Tự động tiêu diệt cướp biển xâm chiếm",
     Default = false,
     Callback = function(v543)
         _G.AutoRaidPirate = v543
@@ -4206,8 +4206,8 @@ end)
 end
 if World2 then
     v485:AddToggle({
-        Name = "Auto Factory",
-        Description = "Spawns Every 1:30 [hours, Minutes]",
+        Name = "Tự động Farm Nhà Máy (Factory)",
+        Description = "Nhà máy xuất hiện mỗi 1 giờ 30 phút",
         Default = false,
         Callback = function(v732)
             _G.AutoFactory = v732
@@ -4241,21 +4241,21 @@ if World2 then
  end
 
 if World3 then
-local _ = v485:AddSection({"Kill Player"})
+local _ = v485:AddSection({"Diệt người chơi (PVP)"})
 local v1123 = {}
 for _, v1125 in pairs(game.Players:GetPlayers()) do
     table.insert(v1123, v1125.Name)
 end
 local _ = nil
 v485:AddButton({
-    Title = "Get Quest Elite Players",
+    Title = "Nhận nhiệm vụ Elite Player",
     Description = "",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
     end
 })
 v485:AddToggle({
-    Title = "Auto Kill Player Quest",
+    Title = "Tự động diệt mục tiêu nhiệm vụ",
     Description = "",
     Value = false,
     Callback = function(v1127)
@@ -4309,7 +4309,7 @@ spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Auto Safe Mode",
+    Name = "Chế độ an toàn (Safe Mode)",
     Description = "",
     Default = false,
     Callback = function(v1130)
@@ -4329,8 +4329,8 @@ end)
 end
 
 if World3 then
-local _ = v485:AddSection({"Tyrant of the Skies"})
-local v548 = v485:AddParagraph({Title = "Check Eyes Status", Content = "Loading..."})
+local _ = v485:AddSection({"Bảo chúa bầu trời (Tyrant)"})
+local v548 = v485:AddParagraph({Title = "Kiểm tra trạng thái Mắt", Content = "Loading..."})
 task.spawn(function()
     while task.wait(1) do
         pcall(function()
@@ -4351,7 +4351,7 @@ task.spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Auto Farm Tyrant",
+    Name = "Tự động Farm Tyrant",
     Description = "",
     Default = false,
     Callback = function(v553)
@@ -4453,7 +4453,7 @@ task.spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Summon Tyrant Of The Skies",
+    Name = "Triệu hồi Tyrant bầu trời",
     Description = "",
     Default = false,
     Callback = function(v564)
@@ -4581,8 +4581,8 @@ task.spawn(function()
     end
 end)
 end
-local _ = v485:AddSection({"Farm Bones"})
-local v589 = v485:AddParagraph({Title = "Check Bone", Content = "Loading..."})
+local _ = v485:AddSection({"Tự động Farm Xương"})
+local v589 = v485:AddParagraph({Title = "Kiểm tra số Xương hiện có", Content = "Loading..."})
 task.spawn(function()
     while task.wait(1) do
         pcall(function()
@@ -4592,7 +4592,7 @@ task.spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Auto Farm Bones",
+    Name = "Tự động Farm Xương",
     Description = "",
     Default = false,
     Callback = function(v591)
@@ -4665,7 +4665,7 @@ spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Auto Kill Soul Reaper",
+    Name = "Tự động diệt Soul Reaper",
     Description = "",
     Default = false,
     Callback = function(v599)
@@ -4708,7 +4708,7 @@ spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Auto Trade Bones",
+    Name = "Tự động đổi Xương lấy vật phẩm",
     Description = "",
     Default = false,
     Callback = function(v602)
@@ -4724,7 +4724,7 @@ spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Auto Pray",
+    Name = "Tự động Cầu nguyện (NPC Pray)",
     Description = "",
     Default = false,
     Callback = function(v603)
@@ -4744,7 +4744,7 @@ spawn(function()
     end)
 end)
 v485:AddToggle({
-    Name = "Auto Try Luck",
+    Name = "Tự động thử vận may (Bones)",
     Description = "",
     Default = false,
     Callback = function(v604)
@@ -4763,8 +4763,8 @@ spawn(function()
         end
     end)
 end)
-local _ = v485:AddSection({"Katakuri"})
-local v606 = v485:AddParagraph({Title = "Check Cake Prince", Content = "Loading..."})
+local _ = v485:AddSection({"Boss Katakuri"})
+local v606 = v485:AddParagraph({Title = "Kiểm tra Cake Prince", Content = "Loading..."})
 task.spawn(function()
     while task.wait(1) do
         pcall(function()
@@ -4784,7 +4784,7 @@ task.spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Farm Katakuri",
+    Name = "Tự động Farm Katakuri V1",
     Description = "",
     Default = false,
     Callback = function(v608)
@@ -4888,7 +4888,7 @@ task.spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Farm Katakuri V2",
+    Name = "Tự động Farm Katakuri V2 (Dough King)",
     Description = "",
     Default = false,
     Callback = function(v619)
@@ -4999,10 +4999,10 @@ spawn(function()
         end
     end
 end)
-local _ = v485:AddSection({"Auto Farm Chest And Berry"})
+local _ = v485:AddSection({"Tự động Farm Rương & Tiền (Berry)"})
 
 v485:AddToggle({
-    Name = "Auto Collect Berry",
+    Name = "Tự động nhặt tiền (Berry)",
     Description = "",
     Default = false,
     Callback = function(v628)
@@ -5050,7 +5050,7 @@ spawn(function()
     end
 end)
 v485:AddToggle({
-    Name = "Auto Farm Chest [ Tween ]",
+    Name = "Tự động nhặt Rương [Bay chậm/Tween]",
     Description = "",
     Default = false,
     Callback = function(v644)
@@ -5086,7 +5086,7 @@ end)
 local ChestBypass = false
 
 v485:AddToggle({
-    Title = "Auto Farm Chest [ Bypass ]",
+    Title = "Tự động nhặt Rương [Bypass/Nhanh]",
     Value = false,
     Callback = function(v)
         ChestBypass = v
@@ -5136,8 +5136,8 @@ task.spawn(function()
     end
 end)
 
-local _ = v485:AddSection({"Boss Farm"})
-local v657 = v485:AddParagraph({Title = "Boss Spawn Status", Content = "Initializing..."})
+local _ = v485:AddSection({"Tự động diệt Boss"})
+local v657 = v485:AddParagraph({Title = "Trạng thái xuất hiện của Boss", Content = "Initializing..."})
 task.spawn(function()
     while task.wait(1) do
         pcall(function()
@@ -5198,7 +5198,7 @@ else
     }
 end
 v485:AddDropdown({
-    Name = "Boss List",
+    Name = "Danh sách Boss",
     Description = "",
     Options = v658,
     Default = v658[1],
@@ -5207,7 +5207,7 @@ v485:AddDropdown({
     end
 })
 v485:AddToggle({
-    Name = "Auto Kill Boss Selected",
+    Name = "Tự động diệt Boss đã chọn",
     Description = "",
     Default = false,
     Callback = function(v660)
@@ -5243,7 +5243,7 @@ task.spawn(function()
         end
     end
 end)
-local _ = v485:AddSection({"Material"})
+local _ = v485:AddSection({"Nguyên liệu"})
 local v664 = {}
 if not World1 then
     if World2 then
@@ -5331,7 +5331,7 @@ function getConfigMaterial(v665)
     end
 end
 v485:AddDropdown({
-    Name = "Material List",
+    Name = "Danh sách nguyên liệu",
     Description = "",
     Options = v664,
     Default = v664[1],
@@ -5340,7 +5340,7 @@ v485:AddDropdown({
     end
 })
 v485:AddToggle({
-    Name = "Auto Farm Material",
+    Name = "Tự động farm nguyên liệu đã chọn",
     Description = "",
     Default = false,
     Callback = function(v667)
@@ -5380,9 +5380,9 @@ task.spawn(function()
     end
 end)
 
-local _ = v486:AddSection({"Auto Fishing"})
+local _ = v486:AddSection({"Tự động Câu cá"})
 v486:AddToggle({
-    Title = "Auto Fishing",
+    Title = "Bật Tự động Câu cá",
     Description = "",
     Default = false,
     Callback = function(v673)
@@ -5430,7 +5430,7 @@ task.spawn(function()
     end
 end)
 v486:AddDropdown({
-    Name = "Select Fishing Lure",
+    Name = "Chọn Mồi câu",
     Description = "",
     Options = {"Basic Bait", "Kelp Bait", "Good Bait", "Abyssal Bait", "Frozen Bait", "Epic Bait", "Carnivore Bait"},
     Default = "Basic Bait",
@@ -5440,7 +5440,7 @@ v486:AddDropdown({
     end
 })
 v486:AddDropdown({
-    Name = "Select Fishing Rod",
+    Name = "Chọn Cần câu",
     Description = "",
     Options = {"Fishing Rod", "Gold Rod", "Shark Rod", "Shell Rod", "Treasure Rod"},
     Default = "Fishing Rod",
@@ -5449,9 +5449,9 @@ v486:AddDropdown({
     end
 })
 if World1 then
-    local _ = v487:AddSection({"Quest Sea 1"})
+    local _ = v487:AddSection({"Nhiệm vụ Biển 1"})
     v487:AddToggle({
-        Name = "AutoSecondSea",
+        Name = "Tự động làm nhiệm vụ qua Biển 2",
         Description = "",
         Default = false,
         Callback = function(v693)
@@ -5509,7 +5509,7 @@ if World1 then
     end)
     local _ = v487:AddSection({"Boss Greybeard"})
     v487:AddToggle({
-        Name = "Kill Greybeard",
+        Name = "Diệt Greybeard",
         Description = "",
         Default = false,
         Callback = function(v698)
@@ -5552,9 +5552,9 @@ if World1 then
             end
         end
     end)
-    local _ = v487:AddSection({"Quest Sword"})
+    local _ = v487:AddSection({"Nhiệm vụ lấy Kiếm"})
     v487:AddToggle({
-        Name = "Auto Get Saber",
+        Name = "Tự động lấy kiếm Saber",
         Description = "",
         Default = false,
         Callback = function(v702)
@@ -5661,7 +5661,7 @@ if World1 then
         end
     end)
     v487:AddToggle({
-        Name = "Auto Get Sword Pole",
+        Name = "Tự động lấy kiếm Pole",
         Description = "",
         Default = false,
         Callback = function(v707)
@@ -5697,7 +5697,7 @@ if World1 then
         end
     end)
     v487:AddToggle({
-        Name = "Auto Get Sword Saw",
+        Name = "Tự động lấy kiếm Saw",
         Description = "",
         Default = false,
         Callback = function(v710)
@@ -5748,7 +5748,7 @@ if World1 then
             end
         end)
         v487:AddToggle({
-            Name = "Auto Get Sword Wardens",
+            Name = "Tự động lấy kiếm Wardens",
             Description = "",
             Default = false,
             Callback = function(v715)
@@ -5784,7 +5784,7 @@ if World1 then
             end
         end)
         v487:AddToggle({
-            Name = "Auto Get Sword Trident",
+            Name = "Tự động lấy kiếm Trident",
             Description = "",
             Default = false,
             Callback = function(v718)
@@ -5822,9 +5822,9 @@ if World1 then
     end
 end
 if World2 then
-    local _ = v487:AddSection({"Quest Sea 2"})
+    local _ = v487:AddSection({"Nhiệm vụ Biển 2"})
     v487:AddToggle({
-        Name = "Auto Quest Sea Bartilo",
+        Name = "Tự động làm nhiệm vụ Bartilo",
         Description = "",
         Default = false,
         Callback = function(v722)
@@ -5965,7 +5965,7 @@ if World2 then
         end)
     end)
     v487:AddToggle({
-        Name = "Auto Quest Sea 3",
+        Name = "Tự động làm nhiệm vụ qua Biển 3",
         Description = "",
         Default = false,
         Callback = function(v728)
@@ -6017,9 +6017,9 @@ if World2 then
         end
     end)
 
-    local _ = v487:AddSection({"Boss Dark Beard"})
+    local _ = v487:AddSection({"Boss Râu Đen (Dark Beard)"})
     v487:AddToggle({
-        Name = "Auto Kill Dark Beard",
+        Name = "Tự động diệt Râu Đen",
         Description = "",
         Default = false,
         Callback = function(v736)
@@ -6057,7 +6057,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Name = "Auto Kill Cursed Captain",
+        Name = "Tự động diệt Cursed Captain",
         Description = "",
         Default = false,
         Callback = function(v739)
@@ -6094,9 +6094,9 @@ if World2 then
             end
         end
     end)
-    local _ = v487:AddSection({"Auto Buy Haki  "})
+    local _ = v487:AddSection({"Tự động Mua Haki"})
     v487:AddToggle({
-        Name = "Auto Buy Haki Colors",
+        Name = "Tự động mua màu Haki",
         Description = "",
         Default = false,
         Callback = function(v743)
@@ -6113,7 +6113,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Title = "Auto Buy Legendary Sword",
+        Title = "Tự động mua Kiếm Huyền Thoại (Huyền Thoại Cổ Xưa)",
         Value = false,
         Callback = function(v745)
             _G.AutoBuyLegendarySword = v745
@@ -6133,9 +6133,9 @@ if World2 then
             end
         end
     end)
-    local _ = v487:AddSection({"Quest Sword"})
+    local _ = v487:AddSection({"Nhiệm vụ lấy Kiếm"})
     v487:AddToggle({
-        Name = "Auto Get Longsword",
+        Name = "Tự động lấy Longsword",
         Description = "",
         Default = false,
         Callback = function(v750)
@@ -6171,7 +6171,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Name = "Auto Get Sword Gravity Blade",
+        Name = "Tự động lấy Gravity Blade",
         Description = "",
         Default = false,
         Callback = function(v753)
@@ -6209,7 +6209,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Name = "Auto Get Sword Flail",
+        Name = "Tự động lấy Flail",
         Description = "",
         Default = false,
         Callback = function(v756)
@@ -6245,7 +6245,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Name = "Auto Get Sword Rengoku",
+        Name = "Tự động lấy Rengoku",
         Description = "",
         Default = false,
         Callback = function(v759)
@@ -6287,7 +6287,7 @@ if World2 then
         end)
     end)
     v487:AddToggle({
-        Name = "Auto Get Sword Dragon Trident",
+        Name = "Tự động lấy Dragon Trident",
         Description = "",
         Default = false,
         Callback = function(v762)
@@ -6324,10 +6324,10 @@ if World2 then
     end)
 end
 if World3 then
-    local _ = v487:AddSection({"Quest Sea 3"})
-    local _ = v487:AddSection({"Boss Rip indra"})
+    local _ = v487:AddSection({"Nhiệm vụ Biển 3"})
+    local _ = v487:AddSection({"Boss Rip Indra"})
     v487:AddToggle({
-        Name = "Auto kill Rip Indra",
+        Name = "Tự động diệt Rip Indra",
         Description = "",
         Default = false,
         Callback = function(v767)
@@ -6387,7 +6387,7 @@ if World3 then
             end)
         end)
         v487:AddToggle({
-            Name = "Auto Haki Colors",
+            Name = "Tự động làm màu Haki",
             Description = "",
             Default = false,
             Callback = function(v775)
@@ -6403,9 +6403,9 @@ if World3 then
                 end
             end
         end)
-        local _ = v487:AddSection({"Quest Skull Guitar"})
+        local _ = v487:AddSection({"Nhiệm vụ Skull Guitar (Đàn)"})
         v487:AddToggle({
-            Name = "Auto Skull Guitar",
+            Name = "Tự động lấy Skull Guitar",
             Description = "",
             Default = false,
             Callback = function(v778)
@@ -6502,7 +6502,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Kill Elite Hunter",
+            Name = "Tự động diệt Elite Hunter",
             Description = "",
             Default = false,
             Callback = function(v793)
@@ -6554,9 +6554,9 @@ if World3 then
                 end
             end
         end)
-        local _ = v487:AddSection({"Auto CDK"})
+        local _ = v487:AddSection({"Tự động lấy CDK (Cursed Dual Katana)"})
         v487:AddToggle({
-            Name = "Auto Cdk [Beta]",
+            Name = "Tự động lấy CDK [Bản thử nghiệm]",
             Description = "",
             Default = false,
             Callback = function(v797)
@@ -6626,7 +6626,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Auto Get Yama",
+            Name = "Tự động lấy kiếm Yama",
             Description = "",
             Default = false,
             Callback = function(v807)
@@ -6645,7 +6645,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Auto Holy Torch Tushita",
+            Name = "Tự động cắm đuốc Tushita",
             Description = "",
             Default = false,
             Callback = function(v808)
@@ -6691,7 +6691,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Auto Get Tushita",
+            Name = "Tự động lấy kiếm Tushita",
             Description = "",
             Default = false,
             Callback = function(v809)
@@ -6726,9 +6726,9 @@ if World3 then
                 end
             end
         end)
-        local _ = v487:AddSection({"Quest Sword"})
+        local _ = v487:AddSection({"Nhiệm vụ lấy Kiếm"})
         v487:AddToggle({
-            Name = "Auto Get Sword Twin Hooks",
+            Name = "Tự động lấy Twin Hooks",
             Description = "",
             Default = false,
             Callback = function(v813)
@@ -6766,7 +6766,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Auto Get Sword Canvander",
+            Name = "Tự động lấy Canvander",
             Description = "",
             Default = false,
             Callback = function(v816)
@@ -6802,7 +6802,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Auto Get Sword Buddy",
+            Name = "Tự động lấy Buddy Sword",
             Description = "",
             Default = false,
             Callback = function(v819)
@@ -6840,38 +6840,38 @@ if World3 then
             end
         end)
     end
-local _ = v487:AddSection({"Teleport V4"})
+local _ = v487:AddSection({"Dịch chuyển Thức tỉnh V4"})
 v487:AddButton({
-    Title = "Teleport To Top GreatTree",
+    Title = "Dịch chuyển đến ngọn Cây Đại Thụ",
     Value = false,
     Callback = function()
         Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3030.39453125, 2280.6171875, -7320.18359375)
     end
 })
 v487:AddButton({
-    Title = "Teleport Temple Of Time",
+    Title = "Dịch chuyển đến Đền Thời Gian",
     Value = false,
     Callback = function()
         Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
     end
 })
 v487:AddButton({
-    Title = "Teleport Lever Pull",
+    Title = "Dịch chuyển đến Cần Gạt V4",
     Value = false,
     Callback = function()
         topos(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
     end
 })
 v487:AddButton({
-    Title = "Teleport To The Clock",
+    Title = "Dịch chuyển đến Đồng Hồ",
     Value = false,
     Callback = function()
         topos(CFrame.new(29553.7812, 15066.6133, -88.2750015, 1, 0, 0, 0, 1, 0, 0, 0, 1))
     end
 })
-local _ = v487:AddSection({"Trial V4"})
+local _ = v487:AddSection({"Thử thách V4 (Trial)"})
 v487:AddButton({
-    Title = "Auto Race Door",
+    Title = "Tự động mở cửa Race",
     Value = false,
     Callback = function()
         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
@@ -6902,14 +6902,14 @@ v487:AddButton({
     end
 })
 v487:AddButton({
-    Title = "Buy Acient One Quest",
+    Title = "Mua nhiệm vụ Acient One",
     Value = false,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("UpgradeRace", "Buy")
     end
 })
 v487:AddToggle({
-    Name = "Auto Trial Human Ghost",
+    Name = "Tự động Trial Human Ghost",
     Description = "",
     Default = false,
     Callback = function(v998)
@@ -6918,7 +6918,7 @@ v487:AddToggle({
     end
 })
 v487:AddToggle({
-    Name = "Auto Trial All Race",
+    Name = "Tự động Trial mọi tộc (All Race)",
     Description = "",
     Default = false,
     Callback = function(v999)
@@ -7046,7 +7046,7 @@ spawn(function()
     end)
 end)
 v487:AddToggle({
-    Name = "Auto Kill Player after Trial  V4",
+    Name = "Tự động diệt người chơi sau khi Trial V4",
     Description = "",
     Default = false,
     Callback = function(v1020)
@@ -7077,9 +7077,9 @@ spawn(function()
         end
     end
 end)
-local _ = v487:AddSection({"Auto Skill"})
+local _ = v487:AddSection({"Tự động dùng Skill"})
 v487:AddToggle({
-    Name = "Auto Skill Z",
+    Name = "Tự động dùng Skill Z",
     Description = "",
     Default = false,
     Callback = function(v1024)
@@ -7088,7 +7088,7 @@ v487:AddToggle({
     end
 })
 v487:AddToggle({
-    Name = "Auto Skill X",
+    Name = "Tự động dùng Skill X",
     Description = "",
     Default = false,
     Callback = function(v1025)
@@ -7097,7 +7097,7 @@ v487:AddToggle({
     end
 })
 v487:AddToggle({
-    Name = "Auto Skill C",
+    Name = "Tự động dùng Skill C",
     Description = "",
     Default = false,
     Callback = function(v1026)
@@ -7106,9 +7106,9 @@ v487:AddToggle({
     end
 })
 end
-local _ = v489:AddSection({"Sea Events"})
+local _ = v489:AddSection({"Sự kiện Biển"})
 v489:AddToggle({
-    Name = "Auto Drive Boats",
+    Name = "Tự động lái Thuyền",
     Description = "",
     Default = false,
     Callback = function(v948)
@@ -7167,7 +7167,7 @@ spawn(function()
     end)
 end)
 v489:AddToggle({
-    Name = "Auto Kill Terror Shank",
+    Name = "Tự động diệt Terror Shark",
     Description = "",
     Default = false,
     Callback = function(v952)
@@ -7282,7 +7282,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Kill Shark",
+    Name = "Tự động diệt Cá Mập (Shark)",
     Description = "",
     Default = false,
     Callback = function(v968)
@@ -7326,7 +7326,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Kill Piranha",
+    Name = "Tự động diệt Cá Piranha",
     Description = "",
     Default = false,
     Callback = function(v973)
@@ -7370,7 +7370,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Kill Fish Crew Member",
+    Name = "Tự động diệt Thủy Thủ Cá",
     Description = "",
     Default = false,
     Callback = function(v978)
@@ -7412,9 +7412,9 @@ spawn(function()
     end
 end)
 
-local _ = v489:AddSection({"Volcanic Island"})
+local _ = v489:AddSection({"Đảo Núi Lửa (Volcanic)"})
 v489:AddButton({
-    Title = "Tween Dragon Dojo",
+    Title = "Bay đến Võ Đường Rồng (Dragon Dojo)",
     Value = false,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(5661.53, 1013.09, -334.96))
@@ -7422,7 +7422,7 @@ v489:AddButton({
     end
 })
 v489:AddToggle({
-    Name = "Auto Dragon Huntery",
+    Name = "Tự động săn Rồng",
     Description = "",
     Default = false,
     Callback = function(v822)
@@ -7545,14 +7545,14 @@ spawn(function()
     end
 end)
 v489:AddButton({
-    Title = "Craft Volcanic Magnet",
+    Title = "Chế tạo Nam Châm Núi Lửa",
     Value = false,
     Callback = function()
         local v849 = {[1] = "CraftItem", [2] = "Craft", [3] = "Volcanic Magnet"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v849))
     end
 })
-local v850 = v489:AddParagraph({Title = "Check Prehistoric Island", Content = "Loading..."})
+local v850 = v489:AddParagraph({Title = "Kiểm tra Đảo Tiền Sử", Content = "Loading..."})
 task.spawn(function()
     while task.wait(1) do
         pcall(function()
@@ -7565,7 +7565,7 @@ task.spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Find Prehistoric",
+    Name = "Tự động tìm Đảo Tiền Sử",
     Description = "",
     Default = false,
     Callback = function(v851)
@@ -7677,7 +7677,7 @@ l_RunService_0.RenderStepped:Connect(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Tween Prehistoric Island",
+    Name = "Tự động bay đến Đảo Tiền Sử",
     Description = "",
     Default = false,
     Callback = function(v882)
@@ -7706,7 +7706,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Defend Prehistoric",
+    Name = "Tự động bảo vệ Đảo Tiền Sử",
     Description = "",
     Default = false,
     Callback = function(v887)
@@ -7810,9 +7810,9 @@ spawn(function()
         end
     end
 end)
-local _ = v489:AddSection({"Auto Skill"})
+local _ = v489:AddSection({"Tự động dùng Skill"})
 v489:AddToggle({
-    Name = "Auto Use Melee",
+    Name = "Tự động dùng Võ (Melee)",
     Description = "",
     Default = false,
     Callback = function(v918)
@@ -7821,7 +7821,7 @@ v489:AddToggle({
     end
 })
 v489:AddToggle({
-    Name = "Auto Use Sword",
+    Name = "Tự động dùng Kiếm (Sword)",
     Description = "",
     Default = false,
     Callback = function(v919)
@@ -7830,7 +7830,7 @@ v489:AddToggle({
     end
 })
 v489:AddToggle({
-    Name = "Auto Use Gun",
+    Name = "Tự động dùng Súng (Gun)",
     Description = "",
     Default = false,
     Callback = function(v920)
@@ -7838,9 +7838,9 @@ v489:AddToggle({
         StopTween(_G.UseGun)
     end
 })
-local _ = v489:AddSection({"Auto Kill Golem"})
+local _ = v489:AddSection({"Tự động diệt Golem"})
 v489:AddToggle({
-    Name = "Auto Kill Golem",
+    Name = "Tự động diệt Golem Thường",
     Description = "",
     Default = false,
     Callback = function(v922)
@@ -7878,7 +7878,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Kill Aura Golem",
+    Name = "Tự động diệt Golem Aura",
     Description = "",
     Default = false,
     Callback = function(v925)
@@ -7917,9 +7917,9 @@ spawn(function()
         end
     end)
 end)
-local _ = v489:AddSection({"Auto Collect Bone,Egg"})
+local _ = v489:AddSection({"Tự động nhặt Xương, Trứng"})
 v489:AddToggle({
-    Name = "Auto Collect Bone",
+    Name = "Tự động nhặt Xương Khủng Long",
     Description = "",
     Default = false,
     Callback = function(v934)
@@ -7939,7 +7939,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Collect Egg",
+    Name = "Tự động nhặt Trứng",
     Description = "",
     Default = false,
     Callback = function(v937)
@@ -7956,8 +7956,8 @@ spawn(function()
         end
     end
 end)
-local _ = v489:AddSection({"Kitsune Island"})
-local v939 = v489:AddParagraph({Title = "Check Kitsune Island", Content = "Loading..."})
+local _ = v489:AddSection({"Đảo Kitsune"})
+local v939 = v489:AddParagraph({Title = "Kiểm tra Đảo Kitsune", Content = "Loading..."})
 task.spawn(function()
     while task.wait(1) do
         pcall(function()
@@ -7970,7 +7970,7 @@ task.spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Tween Kitsune island",
+    Name = "Tự động bay đến Đảo Kitsune",
     Description = "",
     Default = false,
     Callback = function(v940)
@@ -8007,7 +8007,7 @@ spawn(function()
     end)
 end)
 v489:AddToggle({
-    Title = "Esp Kitsune Island",
+    Title = "Định vị Đảo Kitsune (ESP)",
     Value = false,
     Callback = function(v945)
         KitsuneIslandEsp = v945
@@ -8024,7 +8024,7 @@ v489:AddToggle({
     end
 })
 v489:AddToggle({
-    Name = "Auto Azuer Ember",
+    Name = "Tự động nhặt lửa Kitsune (Azure Ember)",
     Description = "",
     Default = false,
     Callback = function(v946)
@@ -8043,8 +8043,8 @@ spawn(function()
         end
     end
 end)
-local _ = v489:AddSection({"Mirage Island"})
-local v984 = v489:AddParagraph({Title = "Check Mirage Island", Content = "Loading..."})
+local _ = v489:AddSection({"Đảo Bí Ẩn (Mirage)"})
+local v984 = v489:AddParagraph({Title = "Kiểm tra Đảo Mirage", Content = "Loading..."})
 task.spawn(function()
     while task.wait(1) do
         pcall(function()
@@ -8057,7 +8057,7 @@ task.spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Tween Mirage Island",
+    Name = "Bay đến Đảo Mirage",
     Description = "",
     Default = false,
     Callback = function(v985)
@@ -8079,7 +8079,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Title = "Esp Mirage Island",
+    Title = "Định vị Đảo Mirage (ESP)",
     Description = "",
     Value = false,
     Callback = function(v988)
@@ -8097,7 +8097,7 @@ v489:AddToggle({
     end
 })
 v489:AddToggle({
-    Name = "Look Moon + Auto V3",
+    Name = "Tự động nhìn Trăng & Kích hoạt tộc V3",
     Description = "",
     Default = false,
     Callback = function(v989)
@@ -8122,7 +8122,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Auto Tween To Gear",
+    Name = "Tự động bay đến bánh răng (Gear)",
     Description = "",
     Default = false,
     Callback = function(v993)
@@ -8144,9 +8144,9 @@ spawn(function()
     end)
 end)
 
-local _ = v491:AddSection({"Fruits"})
+local _ = v491:AddSection({"Trái ác quỷ"})
 v491:AddToggle({
-    Name = "Auto Random Fruits",
+    Name = "Tự động quay Trái ác quỷ",
     Description = "",
     Default = false,
     Callback = function(v1074)
@@ -8163,7 +8163,7 @@ spawn(function()
     end)
 end)
 v491:AddToggle({
-    Title = "Auto Store Fruits",
+    Title = "Tự động cất Trái ác quỷ vào kho",
     Description = "",
     Value = false,
     Callback = function(v1075)
@@ -8233,7 +8233,7 @@ spawn(function()
     end
 end)
 v491:AddToggle({
-    Name = "Teleport To Fruit Spawn",
+    Name = "Dịch chuyển đến chỗ Trái ác quỷ xuất hiện",
     Description = "",
     Default = false,
     Callback = function(v1084)
@@ -8252,7 +8252,7 @@ spawn(function()
     end
 end)
 v491:AddToggle({
-    Name = "Auto Teleport Fruits",
+    Name = "Tự động nhặt Trái ác quỷ tự nhiên",
     Description = "",
     Default = false,
     Callback = function(v1087)
@@ -8270,7 +8270,7 @@ spawn(function()
         end
     end
 end)
-local _ = v491:AddSection({"Check Stock Fruits"})
+local _ = v491:AddSection({"Kiểm tra kho hàng Trái ác quỷ"})
 local function v1096(v1091)
     local v1092 = tostring(v1091)
     repeat
@@ -8324,7 +8324,7 @@ local function v1111()
     return v1098
 end
 local v1112 = v491:AddParagraph({
-    Title = "Stock",
+    Title = "Kho hàng",
     Content = "  ang   d    li   u..."
 })
 task.spawn(function()
@@ -8340,12 +8340,12 @@ end)
 
 if World1 then
     v491:AddParagraph({
-        Title = "Raids only works in Sea 2 and 3",
+        Title = "Tính năng Raid chỉ hoạt động ở Biển 2 & 3",
         Content = "This only works in Sea 2 and 3"
     })
 else
 
-local _ = v491:AddSection({"Raid Fruits"})
+local _ = v491:AddSection({"Raid Trái ác quỷ"})
 
 _G.SelectChip = "Flame"
 _G.AutoBuyChip = false
@@ -8353,7 +8353,7 @@ _G.StartRaid = false
 _G.Dungeon = false
 
 v491:AddDropdown({
-    Name = "Select Chip",
+    Name = "Chọn loại Chip Raid",
     Options = {
         "Flame","Ice","Sand","Dark","Light","Magma",
         "Quake","Buddha","Spider","Phoenix","Lightning","Dough"
@@ -8365,7 +8365,7 @@ v491:AddDropdown({
 })
 
 v491:AddToggle({
-    Name = "Auto Buy Chip",
+    Name = "Tự động mua Chip",
     Default = false,
     Callback = function(v)
         _G.AutoBuyChip = v
@@ -8387,7 +8387,7 @@ task.spawn(function()
 end)
 
 v491:AddToggle({
-    Name = "Auto Start Raid",
+    Name = "Tự động bắt đầu Raid",
     Default = false,
     Callback = function(v)
         _G.StartRaid = v
@@ -8425,7 +8425,7 @@ task.spawn(function()
 end)
 
 v491:AddToggle({
-    Name = "Auto Farm Raid Next Island",
+    Name = "Tự động vượt Raid (Tự qua đảo tiếp theo)",
     Default = false,
     Callback = function(v)
         _G.Dungeon = v
@@ -8487,14 +8487,14 @@ end
 
 if not World2 then
     v491:AddParagraph({
-        Title = "Raid Law Only Sea 2",
+        Title = "Raid Law chỉ hoạt động ở Biển 2",
         Content = ""
     })
 else
 
-local _ = v491:AddSection({"Raid Law Sea 2"})
+local _ = v491:AddSection({"Raid Law Biển 2"})
 v491:AddButton({
-    Title = "Auto Buy Chip Law",
+    Title = "Tự động mua Chip Raid Law",
     Description = "",
     Value = false,
     Callback = function()
@@ -8503,14 +8503,14 @@ v491:AddButton({
     end
 })
 v491:AddButton({
-    Title = "Auto Start Raid Law",
+    Title = "Tự động bắt đầu Raid Law",
     Value = false,
     Callback = function()
         fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon.Button.Main.ClickDetector)
     end
 })
 v491:AddToggle({
-    Name = "Auto Farm Law Raid",
+    Name = "Tự động đánh Raid Law",
     Description = "",
     Default = false,
     Callback = function(v1070)
@@ -8546,7 +8546,7 @@ spawn(function()
     end
 end)
 end
-local _ = v493:AddSection({"Teleport Island"})
+local _ = v493:AddSection({"Dịch chuyển Đảo"})
 local function v1116(v1114)
     pcall(function()
         if type(topos) == "function" then
@@ -8624,7 +8624,7 @@ else
     }
 end
 v493:AddDropdown({
-    Name = "Select Island",
+    Name = "Chọn Đảo",
     Description = "",
     Options = v1117,
     Default = v1117[1],
@@ -8633,7 +8633,7 @@ v493:AddDropdown({
     end
 })
 v493:AddToggle({
-    Name = "Auto Tween To Island",
+    Name = "Tự động bay đến đảo đã chọn",
     Description = "",
     Default = false,
     Callback = function(v)
@@ -8723,23 +8723,23 @@ task.spawn(function()
         end
     end
 end)
-local _ = v493:AddSection({"Teleport Sea"})
+local _ = v493:AddSection({"Dịch chuyển qua Biển (World)"})
 v493:AddButton({
-    Name = "Sea 1",
+    Name = "Qua Biển 1 (World 1)",
     Description = "",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
     end
 })
 v493:AddButton({
-    Name = "Sea 2",
+    Name = "Qua Biển 2 (World 2)",
     Description = "",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
     end
 })
 v493:AddButton({
-    Name = "Sea 3",
+    Name = "Qua Biển 3 (World 3)",
     Description = "",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
@@ -8748,7 +8748,7 @@ v493:AddButton({
 
 
 local TyrantStatus = v499:AddParagraph({
-    Title = "Tyrant of the Skies",
+    Title = "Đến chỗ Tyrant",
     Desc = "Status: "
 })
 spawn(function()
@@ -8763,7 +8763,7 @@ spawn(function()
     end)
 end)
 local CheckRip = v499:AddParagraph({
-    Title = "Rip_Indra",
+    Title = "Đến chỗ Rip Indra",
     Desc = "Status: "
 })
 spawn(function()
@@ -8779,7 +8779,7 @@ spawn(function()
     end
 end)
 local CheckDoughKing = v499:AddParagraph({
-    Title = "Dough King",
+    Title = "Đến chỗ Dough King",
     Desc = "Status: "
 })
 spawn(function()
@@ -8795,7 +8795,7 @@ spawn(function()
     end
 end)
 local EliteHunter = v499:AddParagraph({
-    Title = "Elite Hunter",
+    Title = "Đến chỗ Elite Hunter",
     Desc = "Status: "
 })
 spawn(function()
@@ -8814,7 +8814,7 @@ spawn(function()
     end
 end)
 local Pullever = v499:AddParagraph({
-    Title = "Pull Lever",
+    Title = "Đến chỗ Cần Gạt V4",
     Desc = "Status: "
 })
 spawn(function()
@@ -8829,7 +8829,7 @@ spawn(function()
     end
 end)
 local FM = v499:AddParagraph({
-    Title = "Full Moon",
+    Title = "Đến chỗ đảo Trăng Tròn",
     Desc = ""
 })
 spawn(function()
@@ -8853,7 +8853,7 @@ spawn(function()
     end
 end)
 local LegendarySword = v499:AddParagraph({
-    Title = "Legendary Sword",
+    Title = "Đến chỗ Người Bán Kiếm Huyền Thoại",
     Desc = "Status: "
 })
 spawn(function()
@@ -8873,7 +8873,7 @@ spawn(function()
     end)
 end)
 local Bone = v499:AddParagraph({
-    Title = "Bone",
+    Title = "Đến lâu đài Xương",
     Desc = ""
 })
 spawn(function()
@@ -8936,7 +8936,7 @@ local function DistributePoints()
 end
 
 v497:AddSlider({
-    Name = "Points Amount",
+    Name = "Số lượng điểm cộng",
     Min = 1,
     Max = 500,
     Increase = 1,
@@ -8947,7 +8947,7 @@ v497:AddSlider({
 })
 
 v497:AddToggle({
-    Name = "Auto Status",
+    Name = "Tự động nâng chỉ số",
     Default = false,
     Callback = function(v)
         AutoStats = v
@@ -8957,10 +8957,10 @@ v497:AddToggle({
     end
 })
 
-local Section = v497:AddSection({"Select Status"})
+local Section = v497:AddSection({"Chọn chỉ số nâng"})
 
 v497:AddToggle({
-    Name = "Melee",
+    Name = "Cận chiến (Melee)",
     Default = false,
     Callback = function(v)
         StatsSelect.Melee = v
@@ -8968,7 +8968,7 @@ v497:AddToggle({
 })
 
 v497:AddToggle({
-    Name = "Defense",
+    Name = "Phòng thủ (Defense)",
     Default = false,
     Callback = function(v)
         StatsSelect.Defense = v
@@ -8976,7 +8976,7 @@ v497:AddToggle({
 })
 
 v497:AddToggle({
-    Name = "Sword",
+    Name = "Kiếm (Sword)",
     Default = false,
     Callback = function(v)
         StatsSelect.Sword = v
@@ -8984,7 +8984,7 @@ v497:AddToggle({
 })
 
 v497:AddToggle({
-    Name = "Gun",
+    Name = "Súng (Gun)",
     Default = false,
     Callback = function(v)
         StatsSelect.Gun = v
@@ -8992,14 +8992,14 @@ v497:AddToggle({
 })
 
 v497:AddToggle({
-    Name = "Fruit",
+    Name = "Trái ác quỷ (Fruit)",
     Default = false,
     Callback = function(v)
         StatsSelect.BloxFruit = v
     end
 })
 
-local _ = v494:AddSection({"Aimbot Nearest"})
+local _ = v494:AddSection({"Hỗ trợ ngắm bắn quái gần nhất"})
 
 local v1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/Aimbot-skill-config/refs/heads/main/Aimbot.lua"))()
 
@@ -9040,7 +9040,7 @@ end
 -- TOGGLE PRINCIPAL
 -- ===============================
 v494:AddToggle({
-    Name = "Aimbot Gun",
+    Name = "Tự động ngắm Súng",
     Default = false,
     Callback = function(v)
         AimbotEnabled = v
@@ -9059,7 +9059,7 @@ v494:AddToggle({
 -- AIM PLAYERS
 -- ===============================
 v494:AddToggle({
-    Name = "Aimbot Tap",
+    Name = "Tự động ngắm khi nhấn màn hình",
     Default = false,
     Callback = function(v)
         AimPlayers = v
@@ -9076,7 +9076,7 @@ v494:AddToggle({
 -- AIM MOBS
 -- ===============================
 v494:AddToggle({
-    Name = "Aimbot Skills",
+    Name = "Tự động ngắm bằng Kỹ năng",
     Default = false,
     Callback = function(v)
         AimMobs = v
@@ -9093,7 +9093,7 @@ v494:AddToggle({
 -- IGNORE MOBS (AGORA FUNCIONAL)
 -- ===============================
 v494:AddToggle({
-    Name = "Ignore Mobs",
+    Name = "Bỏ qua quái vật",
     Default = true,
     Callback = function(v)
         IgnoreMobs = v
@@ -9101,7 +9101,7 @@ v494:AddToggle({
     end
 })
 
-local _ = v494:AddSection({"Aimbot skill V2"})
+local _ = v494:AddSection({"Hỗ trợ ngắm bắn Kỹ năng V2"})
 local v1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/Aimbot-skill-config/refs/heads/main/Aimbot.lua"))()
 
 local AimbotEnabled = false
@@ -9109,7 +9109,7 @@ local AimPlayers = false
 local AimMobs = false
 
 v494:AddToggle({
-    Name = "Enable Aimbot Skill",
+    Name = "Bật ngắm kỹ năng",
     Default = false,
     Callback = function(v)
         AimbotEnabled = v
@@ -9131,7 +9131,7 @@ v494:AddToggle({
 })
 
 v494:AddToggle({
-    Name = "Aimbot on Players",
+    Name = "Ngắm vào người chơi khác",
     Default = false,
     Callback = function(v)
         AimPlayers = v
@@ -9150,7 +9150,7 @@ v494:AddToggle({
 })
 
 v494:AddToggle({
-    Name = "Aimbot on Mobs",
+    Name = "Ngắm vào quái vật",
     Default = false,
     Callback = function(v)
         AimMobs = v
@@ -9168,7 +9168,7 @@ v494:AddToggle({
     end
 })
 
-local _ = v494:AddSection({"Esp"})
+local _ = v494:AddSection({"Định vị (ESP)"})
 local ESP_SIZE_FILE = "esp_size_save.txt"
 
 if isfile(ESP_SIZE_FILE) then
@@ -9179,7 +9179,7 @@ else
 end
 
 v494:AddSlider({
-	Name = "ESP Size",
+	Name = "Kích thước nét vẽ định vị",
 	Min = 10,
 	Max = 40,
 	Default = _G.ESPSize,
@@ -9363,7 +9363,7 @@ end)
 
 -- Toggle da sua lib
 v494:AddToggle({
-	Title = "ESP Players",
+	Title = "Định vị người chơi",
 	Default = ESPPlayer,
 	Callback = function(v)
 		ESPPlayer = v
@@ -9381,7 +9381,7 @@ v494:AddToggle({
 	end
 })
 v494:AddToggle({
-    Title = "Esp Chest",
+    Title = "Định vị rương báu",
     Value = false,
     Callback = function(v1147)
         _G.ChestESP = v1147
@@ -9471,7 +9471,7 @@ local function StopFruitESP()
 end
 
 v494:AddToggle({
-    Title = "ESP Fruits",
+    Title = "Định vị trái ác quỷ",
     Value = DevilFruitESP,
     Callback = function(state)
         DevilFruitESP = state
@@ -9493,7 +9493,7 @@ end
 
 
 v494:AddToggle({
-    Title = "Esp Berry",
+    Title = "Định vị tiền xu/Berry",
     Value = false,
     Callback = function(v1149)
         Berry = v1149
@@ -9509,7 +9509,7 @@ v494:AddToggle({
     end
 })
 
-    v494:AddSection("Visual")
+    v494:AddSection("Hiển thị & FPS")
 local vu14 = game.Players.LocalPlayer
 
 v494:AddButton({
@@ -9546,7 +9546,7 @@ v494:AddButton({
     end
 })
 
-local _ = v495:AddSection({"Fighting Style"})
+local _ = v495:AddSection({"Phong cách chiến đấu (Võ)"})
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -9676,7 +9676,7 @@ local function StopAllBuy()
 end
 
 v495:AddToggle({
-	Title = "Buy Black Leg",
+	Title = "Mua Hắc Cước (Black Leg)",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9688,7 +9688,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy Electro",
+	Title = "Mua Điện Long (Electro)",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9700,7 +9700,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy Fishman Karate",
+	Title = "Mua Karate Người Cá",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9712,7 +9712,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy Superhuman",
+	Title = "Mua Siêu Nhân (Superhuman)",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9724,7 +9724,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy Death Step",
+	Title = "Mua Death Step",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9736,7 +9736,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy Sharkman Karate",
+	Title = "Mua Sharkman Karate",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9748,7 +9748,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy Electric Claw",
+	Title = "Mua Electric Claw",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9760,7 +9760,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy Dragon Talon",
+	Title = "Mua Dragon Talon",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9772,7 +9772,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy God Human",
+	Title = "Mua God Human",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9784,7 +9784,7 @@ v495:AddToggle({
 })
 
 v495:AddToggle({
-	Title = "Buy Sanguine Art",
+	Title = "Mua Sanguine Art",
 	Value = false,
 	Callback = function(v)
 		StopAllBuy()
@@ -9795,233 +9795,233 @@ v495:AddToggle({
 	end
 })
 
-local _ = v495:AddSection({"Buy Sea Event Crafting"})
+local _ = v495:AddSection({"Chế tạo vật phẩm biển"})
 v495:AddButton({
-    Title = "Craft Dragonheart",
+    Title = "Chế tạo Dragonheart",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "Dragonheart")
     end
 })
 v495:AddButton({
-    Title = "Craft Dragonstorm",
+    Title = "Chế tạo Dragonstorm",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "Dragonstorm")
     end
 })
 v495:AddButton({
-    Title = "Craft DinoHood",
+    Title = "Chế tạo DinoHood",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "DinoHood")
     end
 })
 v495:AddButton({
-    Title = "Craft SharkTooth",
+    Title = "Chế tạo SharkTooth",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "SharkTooth")
     end
 })
 v495:AddButton({
-    Title = "Craft TerrorJaw",
+    Title = "Chế tạo TerrorJaw",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "TerrorJaw")
     end
 })
 v495:AddButton({
-    Title = "Craft SharkAnchor",
+    Title = "Chế tạo SharkAnchor",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "SharkAnchor")
     end
 })
 v495:AddButton({
-    Title = "Craft LeviathanCrown",
+    Title = "Chế tạo LeviathanCrown",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "LeviathanCrown")
     end
 })
 v495:AddButton({
-    Title = "Craft LeviathanShield",
+    Title = "Chế tạo LeviathanShield",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "LeviathanShield")
     end
 })
 v495:AddButton({
-    Title = "Craft LeviathanBoat",
+    Title = "Chế tạo LeviathanBoat",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "LeviathanBoat")
     end
 })
 v495:AddButton({
-    Title = "Craft LegendaryScroll",
+    Title = "Chế tạo LegendaryScroll",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "LegendaryScroll")
     end
 })
 v495:AddButton({
-    Title = "Craft MythicalScroll",
+    Title = "Chế tạo MythicalScroll",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CraftItem", "Craft", "MythicalScroll")
     end
 })
-local _ = v495:AddSection({"Buy Haki,Soru..."})
+local _ = v495:AddSection({"Mua kỹ năng Haki, Soru..."})
 v495:AddButton({
-    Title = "Buy Geppo $10,000",
+    Title = "Mua Nhảy cao (Geppo) - $10,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo")
     end
 })
 v495:AddButton({
-    Title = "Buy Buso Haki $25,000",
+    Title = "Mua Haki Vũ Trang - $25,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Buso")
     end
 })
 v495:AddButton({
-    Title = "Buy Soru $25,000",
+    Title = "Mua Dịch chuyển nhanh (Soru) - $25,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru")
     end
 })
 v495:AddButton({
-    Title = "Buy Observation Haki $750,000",
+    Title = "Mua Haki Quan Sát - $750,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Buy")
     end
 })
-local _ = v495:AddSection({"Buy Sword,Gun"})
+local _ = v495:AddSection({"Mua Vũ khí (Kiếm & Súng)"})
 v495:AddButton({
-    Title = "Buy Cutlass $1,000",
+    Title = "Mua Cutlass - $1,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cutlass")
     end
 })
 v495:AddButton({
-    Title = "Buy Katana $1,000",
+    Title = "Mua Katana - $1,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Katana")
     end
 })
 v495:AddButton({
-    Title = "Buy Iron Mace $25,000",
+    Title = "Mua Iron Mace - $25,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Iron Mace")
     end
 })
 v495:AddButton({
-    Title = "Buy Dual Katana $12,000",
+    Title = "Mua Dual Katana - $12,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Duel Katana")
     end
 })
 v495:AddButton({
-    Title = "Buy Triple Katana $60,000",
+    Title = "Mua Triple Katana - $60,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Triple Katana")
     end
 })
 v495:AddButton({
-    Title = "Buy Pipe $100,000",
+    Title = "Mua Pipe - $100,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Pipe")
     end
 })
 v495:AddButton({
-    Title = "Buy Dual-Headed Blade $400,000",
+    Title = "Mua Dual-Headed Blade - $400,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Dual-Headed Blade")
     end
 })
 v495:AddButton({
-    Title = "Buy Bisento $1,200,000",
+    Title = "Mua Bisento - $1,200,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Bisento")
     end
 })
 v495:AddButton({
-    Title = "Buy Soul Cane $750,000",
+    Title = "Mua Soul Cane - $750,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Soul Cane")
     end
 })
 v495:AddButton({
-    Title = "Buy Pole V2 5,000F",
+    Title = "Mua Pole V2 - 5,000 F",
     Callback = function()
         game.ReplicatedStorage.Remotes.CommF_:InvokeServer("ThunderGodTalk")
     end
 })
 v495:AddButton({
-    Title = "Buy Slingshot $5,000",
+    Title = "Mua Slingshot - $5,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Slingshot")
     end
 })
 v495:AddButton({
-    Title = "Buy Musket $8,000",
+    Title = "Mua Musket - $8,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Musket")
     end
 })
 v495:AddButton({
-    Title = "Buy Flintlock $10,500",
+    Title = "Mua Flintlock - $10,500",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Flintlock")
     end
 })
 v495:AddButton({
-    Title = "Refined Slingshot $30,000",
+    Title = "Mua Refined Slingshot - $30,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Refined Flintlock")
     end
 })
 v495:AddButton({
-    Title = "Buy Refined Flintlock $65,000",
+    Title = "Mua Refined Flintlock - $65,000",
     Callback = function()
         local v1157 = {[1] = "BuyItem", [2] = "Refined Flintlock"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1157))
     end
 })
 v495:AddButton({
-    Title = "Buy Cannon $100,000",
+    Title = "Mua Cannon - $100,000",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cannon")
     end
 })
 v495:AddButton({
-    Title = "Buy Kabucha 1,500F",
+    Title = "Mua Kabucha - 1,500 F",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "2")
     end
 })
 v495:AddButton({
-    Title = "Buy Bizarre Rifle 250 Ectoplasm",
+    Title = "Mua Bizarre Rifle - 250 Ectoplasm",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Ectoplasm", "Buy", 1)
     end
 })
 v495:AddButton({
-    Title = "Buy Black Cape $50,000",
+    Title = "Mua Black Cape - $50,000",
     Callback = function()
         local v1158 = {[1] = "BuyItem", [2] = "Black Cape"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1158))
     end
 })
 v495:AddButton({
-    Title = "Swordsman Hat $150,000",
+    Title = "Mua Swordsman Hat - $150,000",
     Callback = function()
         local v1159 = {[1] = "BuyItem", [2] = "Swordsman Hat"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1159))
     end
 })
 v495:AddButton({
-    Title = "Buy Tomoe Ring $500,000",
+    Title = "Mua Tomoe Ring - $500,000",
     Callback = function()
         local v1160 = {[1] = "BuyItem", [2] = "Tomoe Ring"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1160))
     end
 })
-local _ = v495:AddSection({"Reset Stats , Random Race"})
+local _ = v495:AddSection({"Khôi phục chỉ số & Đổi tộc"})
 v495:AddButton({
-    Title = "buy Ghoul",
+    Title = "Mua tộc Quỷ (Ghoul)",
     Description = "",
     Callback = function()
         local v1162 = {[1] = "Ectoplasm", [2] = "Change", [3] = 4}
@@ -10029,7 +10029,7 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "buy Cyborg",
+    Title = "Mua tộc Người Máy (Cyborg)",
     Description = "",
     Callback = function()
         local v1163 = {[1] = "CyborgTrainer", [2] = "Buy"}
@@ -10037,23 +10037,23 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Reset Stats 2,500F",
+    Title = "Tẩy điểm chỉ số (2,500 F)",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Refund", "1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Refund", "2")
     end
 })
 v495:AddButton({
-    Title = "Random Race 3,000F",
+    Title = "Đổi tộc ngẫu nhiên (3,000 F)",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Reroll", "1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Reroll", "2")
     end
 })
 
-local _ = v496:AddSection({"Join Server"})
+local _ = v496:AddSection({"Vào máy chủ (Server)"})
 v496:AddTextBox({
-        Name = "Job ID",
+        Name = "Mã ID máy chủ",
         PlaceholderText = "Paste the Job ID here...",
         Callback = function(p215)
             if p215 ~= "" then
@@ -10062,8 +10062,8 @@ v496:AddTextBox({
         end
     })
 v496:AddButton({
-    Title = "Join Clipboard",
-    Description = "Join server from copied JobId",
+    Title = "Vào bằng ID đã copy",
+    Description = "Vào máy chủ từ ID đã lưu ở bộ nhớ tạm",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
         local Players = game:GetService("Players")
@@ -10079,10 +10079,10 @@ v496:AddButton({
     end
 })
 
-local _ = v496:AddSection({"Settings"})
+local _ = v496:AddSection({"Cài đặt"})
 
 v496:AddToggle({
-    Name = "Fast Attack",
+    Name = "Tấn công nhanh (Fast Attack)",
     Description = "",
     Default = true,
     Callback = function(value)
@@ -10223,7 +10223,7 @@ task.spawn(function()
     end
 end)
 v496:AddToggle({
-    Name = "Bring Mob",
+    Name = "Gom quái lại gần (Bring Mob)",
     Description = "",
     Default = true,
     Callback = function(v1165)
@@ -10264,14 +10264,14 @@ spawn(function()
     end
 end)
 
-v496:AddSection("Server")
+v496:AddSection("Máy chủ")
 v496:AddButton({
-    Title = "Rejoin Server",
+    Title = "Vào lại máy chủ hiện tại",
     Callback = function()
         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
     end
 })
-v496:AddButton({Title = "Server Hop", Callback = function()
+v496:AddButton({Title = "Chuyển máy chủ khác (Server Hop)", Callback = function()
     Hop()
 end})
 
@@ -10309,8 +10309,8 @@ end
 
 -- ===== TOGGLE REDZLIB =====
 v496:AddToggle({
-    Name = "Anti-reset",
-    Description = "Server hop every 30 minutes",
+    Name = "Tự động nhảy server chống reset",
+    Description = "Đổi máy chủ khác sau mỗi 30 phút",
     Default = false,
     Callback = function(Value)
         _G.AutoRejoin30m = Value
@@ -10339,23 +10339,23 @@ v496:AddToggle({
     end
 })
 
-v496:AddSection("Team")
+v496:AddSection("Chọn Đội")
 v496:AddButton({
-    Title = "Join Pirates Team",
+    Title = "Vào đội Hải Tặc (Pirate)",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Pirates")
     end
 })
 v496:AddButton({
-    Title = "Join Marines Team",
+    Title = "Vào đội Hải Quân (Marine)",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Marines")
     end
 })
 
-v496:AddSection("Race")
+v496:AddSection("Tộc (Race)")
 v496:AddToggle({
-    Title = "Auto Active Race V3",
+    Title = "Tự động bật Tộc V3",
     Description = "",
     Value = false,
     Callback = function(v1171)
@@ -10387,7 +10387,7 @@ else
 end
 
 v496:AddToggle({
-    Title = "Auto Active Race V4",
+    Title = "Tự động bật Tộc V4",
     Description = "",
     Value = _G.AutoRaceV4,
     Callback = function(state)
@@ -10423,9 +10423,9 @@ spawn(function()
     end
 end)
 
-v496:AddSection("Menu")
+v496:AddSection("Giao diện game")
 v496:AddButton({
-    Title = "Open Title Name",
+    Title = "Mở bảng danh hiệu (Titles)",
     Callback = function()
         local v1209 = {[1] = "getTitles"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1209))
@@ -10433,7 +10433,7 @@ v496:AddButton({
     end
 })
 
-v496:AddSection("Local-Player")
+v496:AddSection("Người chơi (Local)")
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -10497,7 +10497,7 @@ if LocalPlayer.Character then
 end
 
 v496:AddToggle({
-	Title = "Enable WalkSpeed and Jump",
+	Title = "Bật Tốc độ chạy & Nhảy cao",
 	Default = MovementEnabled,
 	Callback = function(v)
 		MovementEnabled = v
@@ -10517,7 +10517,7 @@ v496:AddToggle({
 })
 
 v496:AddSlider({
-	Title = "Speed",
+	Title = "Tốc độ chạy",
 	Min = 26,
 	Max = 300,
 	Default = WalkSpeedValue,
@@ -10535,7 +10535,7 @@ v496:AddSlider({
 })
 
 v496:AddSlider({
-	Title = "Jump",
+	Title = "Độ cao khi nhảy",
 	Min = 50,
 	Max = 500,
 	Default = JumpValue,
@@ -10552,7 +10552,7 @@ v496:AddSlider({
 	end
 })
 
-v496:AddSection("Visual")
+v496:AddSection("Hiển thị & FPS")
 local Lighting = game:GetService("Lighting")
 local FULLBRIGHT_SAVE_FILE = "fullbright_save.txt"
 
@@ -10593,7 +10593,7 @@ end
 ApplyFullBright(FullBrightEnabled)
 
 v496:AddToggle({
-	Title = "Full Bright",
+	Title = "Bật sáng màn hình (Full Bright)",
 	Value = FullBrightEnabled,
 	Callback = function(Value)
 		FullBrightEnabled = Value
@@ -10603,7 +10603,7 @@ v496:AddToggle({
 })
 
 v496:AddButton({
-   Title = "Remove Sky Fog",
+   Title = "Xóa sương mù bầu trời",
    Description = "",
    Callback = function()
     if Lighting:FindFirstChild("LightingLayers") then Lighting.LightingLayers:Destroy() end
@@ -10615,7 +10615,7 @@ end
 
 
 v496:AddButton({
-	Name = "FPS Boost",
+	Name = "Tối ưu hóa FPS (FPS Boost)",
 	Callback = function()
 		for _, v in ipairs(game:GetDescendants()) do
 			if v:IsA("BasePart") then
@@ -10635,10 +10635,10 @@ v496:AddButton({
 	end
 })
 
-v496:AddSection("Others")
+v496:AddSection("Khác")
 
 v496:AddToggle({
-    Name = "Delete Lava",
+    Name = "Xóa bỏ dung nham (Lava)",
     Description = "",
     Default = false,
     Callback = function(v1141)
@@ -10663,7 +10663,7 @@ spawn(function()
 end)
 
 v496:AddToggle({
-    Title = "Set Home Point",
+    Title = "Cài điểm hồi sinh (Home Point)",
     Description = "",
     Value = false,
     Callback = function(v1169)
@@ -10679,7 +10679,7 @@ spawn(function()
 end)
 
 PosY = 30
-v496:AddToggle({Title = "Dodge No CD", Value = false, Callback = function(v1178)
+v496:AddToggle({Title = "Né chiêu không hồi chiêu", Value = false, Callback = function(v1178)
     DodgewithoutCool = v1178
 end})
 function NoCooldown()
@@ -10702,7 +10702,7 @@ spawn(function()
         end
     end
 end)
-v496:AddToggle({Title = "Infinite Geppo", Value = false, Callback = function(v1183)
+v496:AddToggle({Title = "Nhảy vô hạn (Geppo)", Value = false, Callback = function(v1183)
     InfiniteGeppo = v1183
 end})
 spawn(function()
@@ -10726,7 +10726,7 @@ spawn(function()
     end
 end)
 v496:AddToggle({
-    Title = "Walk on Water",
+    Title = "Đi trên mặt nước",
     Default = true,
     Callback = function(v1188)
         _G.WalkWater = v1188
@@ -10812,7 +10812,7 @@ local v1218 = {
     "THEGREATACE"
 }
 v496:AddButton({
-    Title = "Codes",
+    Title = "Nhập toàn bộ Code khuyến mãi",
     Description = "",
     Callback = function()
         for _, v1220 in ipairs(v1218) do
@@ -10830,7 +10830,7 @@ v496:AddButton({
 local RunService = game:GetService("RunService")
 
 v496:AddToggle({
-	Name = "White Screen",
+	Name = "Bật màn hình trắng (Treo máy nhẹ)",
 	Default = false,
 	Callback = function(Value)
 
