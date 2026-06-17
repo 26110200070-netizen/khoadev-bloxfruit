@@ -3733,137 +3733,184 @@ function CheckItemBPCRBPCR(v463)
         end
     end
 end
-local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+local cloneref = (cloneref or clonereference or function(instance)
+	return instance
+end)
+local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
+
+local WindUI
+do
+	local ok, result = pcall(function()
+		return require(ReplicatedStorage:WaitForChild("WindUI"):WaitForChild("Init"))
+	end)
+	if ok then
+		WindUI = result
+	else
+		local ok2, result2 = pcall(function()
+			return loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
+		end)
+		if ok2 then
+			WindUI = result2
+		else
+			error("Failed to load WindUI: " .. tostring(result2))
+		end
+	end
+end
+
 local v466 = WindUI:CreateWindow({
-    Title = "Khoa Dev - Blox Fruit",
-    Icon = "sparkles",
-    Author = "Khoa Dev",
-    Folder = "KhoaDev_BloxFruit",
-    Size = UDim2.fromOffset(580, 490),
-    Theme = "Dark",
-    Acrylic = false,
-    AutoScale = true
+	Title = "Khoa Dev - Blox Fruit",
+	Author = "by Khoa Dev",
+	Folder = "KhoaDev_BloxFruit",
+	Icon = "solar:folder-2-bold-duotone",
+	NewElements = true,
+	HideSearchBar = false,
+	OpenButton = {
+		Title = "Open Khoa Dev UI",
+		CornerRadius = UDim.new(1, 0),
+		StrokeThickness = 3,
+		Enabled = true,
+		Draggable = true,
+		OnlyMobile = false,
+		Scale = 0.5,
+		Color = ColorSequence.new(
+			Color3.fromHex("#30FF6A"),
+			Color3.fromHex("#e7ff2f")
+		),
+	},
+	Topbar = {
+		Height = 44,
+		ButtonsType = "Mac",
+	},
 })
 
 local vu32 = {
-    SetScale = function(...) end
+	SetScale = function(...) end
 }
 
 local function wrapTab(tab)
-    local wrapped = {}
-    
-    function wrapped:AddSection(cfg)
-        local title = ""
-        if type(cfg) == "table" then
-            title = cfg[1] or cfg.Title or ""
-        elseif type(cfg) == "string" then
-            title = cfg
-        end
-        return tab:Section({ Title = title })
-    end
-    
-    function wrapped:AddToggle(cfg)
-        return tab:Toggle({
-            Title = cfg.Name or cfg.Title or "",
-            Desc = cfg.Description or cfg.Desc or "",
-            Value = (cfg.Default ~= nil) and cfg.Default or cfg.Value or false,
-            Callback = cfg.Callback
-        })
-    end
-    
-    function wrapped:AddSlider(cfg)
-        return tab:Slider({
-            Title = cfg.Name or cfg.Title or "",
-            Desc = cfg.Description or cfg.Desc or "",
-            Value = {
-                Min = cfg.Min or 0,
-                Max = cfg.Max or 100,
-                Default = cfg.Default or cfg.Value or 50
-            },
-            Step = cfg.Increase or cfg.Step or 1,
-            Callback = cfg.Callback
-        })
-    end
-    
-    function wrapped:AddDropdown(cfg)
-        return tab:Dropdown({
-            Title = cfg.Name or cfg.Title or "",
-            Desc = cfg.Description or cfg.Desc or "",
-            Values = cfg.Options or cfg.Values or {},
-            Value = cfg.Default or cfg.Value,
-            Callback = cfg.Callback
-        })
-    end
-    
-    function wrapped:AddButton(cfg)
-        return tab:Button({
-            Title = cfg.Title or cfg.Name or "",
-            Desc = cfg.Description or cfg.Desc or "",
-            Callback = cfg.Callback
-        })
-    end
-    
-    function wrapped:AddTextBox(cfg)
-        return tab:Input({
-            Title = cfg.Name or cfg.Title or "",
-            Desc = cfg.Description or cfg.Desc or "",
-            Value = cfg.Default or cfg.Value or "",
-            Placeholder = cfg.PlaceholderText or cfg.Placeholder or "",
-            PlaceholderText = cfg.PlaceholderText or cfg.Placeholder or "",
-            Callback = cfg.Callback
-        })
-    end
-    
-    function wrapped:AddParagraph(cfg)
-        local p = tab:Paragraph({
-            Title = cfg.Title or "",
-            Desc = cfg.Desc or cfg.Content or "",
-            Image = cfg.Image,
-            ImageSize = cfg.ImageSize,
-            Color = cfg.Color
-        })
-        
-        local oldSet = p.Set
-        p.Set = function(self, val)
-            if type(val) == "table" then
-                if oldSet then
-                    oldSet(self, val)
-                end
-            else
-                if oldSet then
-                    oldSet(self, { Desc = tostring(val) })
-                end
-            end
-        end
-        
-        return p
-    end
-    
-    function wrapped:AddDiscordInvite(cfg)
-        local sec = tab:Section({ Title = cfg.Name or "Discord Invite" })
-        sec:Paragraph({
-            Title = cfg.Name or "Discord",
-            Desc = cfg.Description or "Click below to join our Discord server."
-        })
-        sec:Button({
-            Title = "Copy Invite Link",
-            Desc = cfg.Invite or "",
-            Callback = function()
-                if setclipboard then
-                    setclipboard(cfg.Invite or "")
-                end
-            end
-        })
-        return sec
-    end
-    
-    setmetatable(wrapped, {
-        __index = function(_, key)
-            return tab[key]
-        end
-    })
-    
-    return wrapped
+	local wrapped = {}
+	
+	function wrapped:AddSection(cfg)
+		local title = ""
+		if type(cfg) == "table" then
+			title = cfg[1] or cfg.Title or ""
+		elseif type(cfg) == "string" then
+			title = cfg
+		end
+		return tab:Section({ Title = title })
+	end
+	
+	function wrapped:AddToggle(cfg)
+		return tab:Toggle({
+			Title = cfg.Name or cfg.Title or "",
+			Desc = cfg.Description or cfg.Desc or "",
+			Value = (cfg.Default ~= nil) and cfg.Default or cfg.Value or false,
+			Callback = cfg.Callback
+		})
+	end
+	
+	function wrapped:AddSlider(cfg)
+		return tab:Slider({
+			Title = cfg.Name or cfg.Title or "",
+			Desc = cfg.Description or cfg.Desc or "",
+			Value = {
+				Min = cfg.Min or 0,
+				Max = cfg.Max or 100,
+				Default = cfg.Default or cfg.Value or 50
+			},
+			Step = cfg.Increase or cfg.Step or 1,
+			Callback = cfg.Callback
+		})
+	end
+	
+	function wrapped:AddDropdown(cfg)
+		return tab:Dropdown({
+			Title = cfg.Name or cfg.Title or "",
+			Desc = cfg.Description or cfg.Desc or "",
+			Values = cfg.Options or cfg.Values or {},
+			Value = cfg.Default or cfg.Value,
+			Callback = cfg.Callback
+		})
+	end
+	
+	function wrapped:AddButton(cfg)
+		return tab:Button({
+			Title = cfg.Title or cfg.Name or "",
+			Desc = cfg.Description or cfg.Desc or "",
+			Callback = cfg.Callback
+		})
+	end
+	
+	function wrapped:AddTextBox(cfg)
+		return tab:Input({
+			Title = cfg.Name or cfg.Title or "",
+			Desc = cfg.Description or cfg.Desc or "",
+			Value = cfg.Default or cfg.Value or "",
+			Placeholder = cfg.PlaceholderText or cfg.Placeholder or "",
+			PlaceholderText = cfg.PlaceholderText or cfg.Placeholder or "",
+			Callback = cfg.Callback
+		})
+	end
+	
+	function wrapped:AddParagraph(cfg)
+		local p = tab:Paragraph({
+			Title = cfg.Title or "",
+			Desc = cfg.Desc or cfg.Content or "",
+			Image = cfg.Image,
+			ImageSize = cfg.ImageSize,
+			Color = cfg.Color
+		})
+		
+		local oldSet = p.Set
+		p.Set = function(self, val)
+			if type(val) == "table" then
+				if oldSet then
+					oldSet(self, val)
+				else
+					if val.Title and self.SetTitle then
+						self:SetTitle(val.Title)
+					end
+					if val.Desc and self.SetDesc then
+						self:SetDesc(val.Desc)
+					end
+				end
+			else
+				if oldSet then
+					oldSet(self, { Desc = tostring(val) })
+				elseif self.SetDesc then
+					self:SetDesc(tostring(val))
+				end
+			end
+		end
+		
+		return p
+	end
+	
+	function wrapped:AddDiscordInvite(cfg)
+		local sec = tab:Section({ Title = cfg.Name or "Discord Invite" })
+		sec:Paragraph({
+			Title = cfg.Name or "Discord",
+			Desc = cfg.Description or "Click below to join our Discord server."
+		})
+		sec:Button({
+			Title = "Copy Invite Link",
+			Desc = cfg.Invite or "",
+			Callback = function()
+				if setclipboard then
+					setclipboard(cfg.Invite or "")
+				end
+			end
+		})
+		return sec
+	end
+	
+	setmetatable(wrapped, {
+		__index = function(_, key)
+			return tab[key]
+		end
+	})
+	
+	return wrapped
 end
 
 local v484 = wrapTab(v466:Tab({Title = "Information", Icon = "info"}))
@@ -3880,8 +3927,8 @@ local v495 = wrapTab(v466:Tab({Title = "Shop", Icon = "shopping-cart"}))
 local v496 = wrapTab(v466:Tab({Title = "Misc", Icon = "settings"}))
 
 v484:AddParagraph({
-    Title = "Khoa Dev xin chào các bạn",
-    Desc = ""
+	Title = "Khoa Dev xin chào các bạn",
+	Desc = ""
 })
 _G.SelectWeapon = "Melee"
 task.spawn(function()
