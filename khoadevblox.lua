@@ -3733,52 +3733,154 @@ function CheckItemBPCRBPCR(v463)
         end
     end
 end
-local vu32 = loadstring(game:HttpGet("https://pastefy.app/5bk02Q6b/raw"))();
-local v466 = vu32:MakeWindow({
-    Title = "Night Slayer Hub [V7]",
-    SubTitle = "By Real_NightSlayer☑️",
-    SaveFolder = "NightSlayerOnTop | redz lib v5.lua"
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+local v466 = WindUI:CreateWindow({
+    Title = "Khoa Dev - Blox Fruit",
+    Icon = "sparkles",
+    Author = "Khoa Dev",
+    Folder = "KhoaDev_BloxFruit",
+    Size = UDim2.fromOffset(580, 490),
+    Theme = "Dark",
+    Acrylic = false,
+    AutoScale = true
 })
 
-v466:AddMinimizeButton({
-    Button = { Image = "rbxassetid://96779554580445", BackgroundTransparency = 1},
-    Size = UDim2.new(0, 40, 0, 40),
-    Corner = { CornerRadius = UDim.new(0.5, 0) },
-})
+local vu32 = {
+    SetScale = function(...) end
+}
 
-local v484 = v466:MakeTab({"Information", "info"})
-local v485 = v466:MakeTab({"Farm", "home"})
-local v486 = v466:MakeTab({"Fishing", "rbxassetid://127664059821666"})
-local v487 = v466:MakeTab({"Quest/Items", "swords"})
-local v491 = v466:MakeTab({"Raid/Fruits", "cherry"})
-local v489 = v466:MakeTab({"Sea Event", "waves"})
-local v497 = v466:MakeTab({"Stats", "Signal"})
-local v493 = v466:MakeTab({"Teleport", "locate"})
-local v499 = v466:MakeTab({"Status", "Scroll"})
-local v494 = v466:MakeTab({"Visual", "user"})
-local v495 = v466:MakeTab({"Shop", "shoppingCart"})
-local v496 = v466:MakeTab({"Misc", "settings"})
+local function wrapTab(tab)
+    local wrapped = {}
+    
+    function wrapped:AddSection(cfg)
+        local title = ""
+        if type(cfg) == "table" then
+            title = cfg[1] or cfg.Title or ""
+        elseif type(cfg) == "string" then
+            title = cfg
+        end
+        return tab:Section({ Title = title })
+    end
+    
+    function wrapped:AddToggle(cfg)
+        return tab:Toggle({
+            Title = cfg.Name or cfg.Title or "",
+            Desc = cfg.Description or cfg.Desc or "",
+            Value = (cfg.Default ~= nil) and cfg.Default or cfg.Value or false,
+            Callback = cfg.Callback
+        })
+    end
+    
+    function wrapped:AddSlider(cfg)
+        return tab:Slider({
+            Title = cfg.Name or cfg.Title or "",
+            Desc = cfg.Description or cfg.Desc or "",
+            Value = {
+                Min = cfg.Min or 0,
+                Max = cfg.Max or 100,
+                Default = cfg.Default or cfg.Value or 50
+            },
+            Step = cfg.Increase or cfg.Step or 1,
+            Callback = cfg.Callback
+        })
+    end
+    
+    function wrapped:AddDropdown(cfg)
+        return tab:Dropdown({
+            Title = cfg.Name or cfg.Title or "",
+            Desc = cfg.Description or cfg.Desc or "",
+            Values = cfg.Options or cfg.Values or {},
+            Value = cfg.Default or cfg.Value,
+            Callback = cfg.Callback
+        })
+    end
+    
+    function wrapped:AddButton(cfg)
+        return tab:Button({
+            Title = cfg.Title or cfg.Name or "",
+            Desc = cfg.Description or cfg.Desc or "",
+            Callback = cfg.Callback
+        })
+    end
+    
+    function wrapped:AddTextBox(cfg)
+        return tab:Input({
+            Title = cfg.Name or cfg.Title or "",
+            Desc = cfg.Description or cfg.Desc or "",
+            Value = cfg.Default or cfg.Value or "",
+            Placeholder = cfg.PlaceholderText or cfg.Placeholder or "",
+            PlaceholderText = cfg.PlaceholderText or cfg.Placeholder or "",
+            Callback = cfg.Callback
+        })
+    end
+    
+    function wrapped:AddParagraph(cfg)
+        local p = tab:Paragraph({
+            Title = cfg.Title or "",
+            Desc = cfg.Desc or cfg.Content or "",
+            Image = cfg.Image,
+            ImageSize = cfg.ImageSize,
+            Color = cfg.Color
+        })
+        
+        local oldSet = p.Set
+        p.Set = function(self, val)
+            if type(val) == "table" then
+                if oldSet then
+                    oldSet(self, val)
+                end
+            else
+                if oldSet then
+                    oldSet(self, { Desc = tostring(val) })
+                end
+            end
+        end
+        
+        return p
+    end
+    
+    function wrapped:AddDiscordInvite(cfg)
+        local sec = tab:Section({ Title = cfg.Name or "Discord Invite" })
+        sec:Paragraph({
+            Title = cfg.Name or "Discord",
+            Desc = cfg.Description or "Click below to join our Discord server."
+        })
+        sec:Button({
+            Title = "Copy Invite Link",
+            Desc = cfg.Invite or "",
+            Callback = function()
+                if setclipboard then
+                    setclipboard(cfg.Invite or "")
+                end
+            end
+        })
+        return sec
+    end
+    
+    setmetatable(wrapped, {
+        __index = function(_, key)
+            return tab[key]
+        end
+    })
+    
+    return wrapped
+end
 
-v484:AddDiscordInvite({
-    Name = "Night Slayer | Official Sever",
-    Description = "Vào Để Nhận Thông Báo Sớm Nhất Nhé",
-    Logo = "rbxassetid://96779554580445",
-    Invite = "https://discord.gg/wWHxH6ARU"
-})
+local v484 = wrapTab(v466:Tab({Title = "Information", Icon = "info"}))
+local v485 = wrapTab(v466:Tab({Title = "Farm", Icon = "home"}))
+local v486 = wrapTab(v466:Tab({Title = "Fishing", Icon = "rbxassetid://127664059821666"}))
+local v487 = wrapTab(v466:Tab({Title = "Quest/Items", Icon = "swords"}))
+local v491 = wrapTab(v466:Tab({Title = "Raid/Fruits", Icon = "cherry"}))
+local v489 = wrapTab(v466:Tab({Title = "Sea Event", Icon = "waves"}))
+local v497 = wrapTab(v466:Tab({Title = "Stats", Icon = "signal"}))
+local v493 = wrapTab(v466:Tab({Title = "Teleport", Icon = "locate"}))
+local v499 = wrapTab(v466:Tab({Title = "Status", Icon = "scroll"}))
+local v494 = wrapTab(v466:Tab({Title = "Visual", Icon = "user"}))
+local v495 = wrapTab(v466:Tab({Title = "Shop", Icon = "shopping-cart"}))
+local v496 = wrapTab(v466:Tab({Title = "Misc", Icon = "settings"}))
+
 v484:AddParagraph({
-Title = "Giao lưu vui vẻ",
-    Desc = "Không Toxic Chửi Nhau"
-})
-v484:AddParagraph({
-Title = "Version: V7",
-    Desc = ""
-})
-v484:AddParagraph({
-Title = "Freeium Version",
-    Desc = ""
-})
-v484:AddParagraph({
-Title = "Premium Version: Comming Soon",
+    Title = "Khoa Dev xin chào các bạn",
     Desc = ""
 })
 _G.SelectWeapon = "Melee"
