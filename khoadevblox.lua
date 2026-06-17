@@ -3796,7 +3796,8 @@ local v495 = v466:MakeTab({"Cửa hàng", "shoppingCart"})
 local v496 = v466:MakeTab({"Khác", "settings"})
 
 v484:AddDiscordInvite({
-    Name = "Khoa Dev - Blox Fruit"
+    Name = "Khoa Dev - Blox Fruit",
+    Logo = isfile("KhoaDevLogo.jpg") and (getcustomasset or getsynasset)("KhoaDevLogo.jpg") or "rbxassetid://96779554580445"
 })
 
 _G.SelectWeapon = "Melee"
