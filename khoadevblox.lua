@@ -3714,7 +3714,7 @@ function CheckPirateBoat()
     end
 end
 function StoreFruit()
-    for _, v461 in pairs(thelocal.Backpack:GetChildren()) do
+    for _, v461 in pairs(Plr.Backpack:GetChildren()) do
         if v461:IsA("Tool") and string.find(v461.Name, "Fruit") then
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit", v461:GetAttribute("OriginalName"), v461)
         end
@@ -3733,7 +3733,7 @@ function CheckItemBPCRBPCR(v463)
         end
     end
 end
-local vu32 = loadstring(game:HttpGet("https://pastefy.app/5bk02Q6b/raw"))();
+local vu32 = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))();
 local v466 = vu32:MakeWindow({
     Title = "Night Slayer Hub [V7]",
     SubTitle = "By Real_NightSlayer☑️",
