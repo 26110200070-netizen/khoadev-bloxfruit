@@ -3801,7 +3801,8 @@ local function wrapTab(windTab)
         elseif type(arg) == "string" then
             title = arg
         end
-        return self.wind_tab:Section({ Title = title })
+        local sec = self.wind_tab:Section({ Title = title })
+        return wrapTab(sec)
     end
     
     function wrapper:AddToggle(config)
@@ -3814,12 +3815,23 @@ local function wrapTab(windTab)
         if defaultVal == nil then
             defaultVal = false
         end
-        return self.wind_tab:Toggle({
+        local el = self.wind_tab:Toggle({
             Title = title,
             Desc = desc,
             Value = defaultVal,
             Callback = config.Callback
         })
+        local elWrapper = { wind_element = el }
+        function elWrapper:Set(v)
+            if self.wind_element then
+                if self.wind_element.SetValue then
+                    self.wind_element:SetValue(v)
+                elseif self.wind_element.Set then
+                    self.wind_element:Set(v)
+                end
+            end
+        end
+        return elWrapper
     end
     
     function wrapper:AddSlider(config)
@@ -3834,7 +3846,7 @@ local function wrapTab(windTab)
         if defaultVal == nil then
             defaultVal = min
         end
-        return self.wind_tab:Slider({
+        local el = self.wind_tab:Slider({
             Title = title,
             Desc = desc,
             Step = config.Step or 1,
@@ -3845,6 +3857,17 @@ local function wrapTab(windTab)
             },
             Callback = config.Callback
         })
+        local elWrapper = { wind_element = el }
+        function elWrapper:Set(v)
+            if self.wind_element then
+                if self.wind_element.SetValue then
+                    self.wind_element:SetValue(v)
+                elseif self.wind_element.Set then
+                    self.wind_element:Set(v)
+                end
+            end
+        end
+        return elWrapper
     end
     
     function wrapper:AddButton(config)
@@ -3865,34 +3888,75 @@ local function wrapTab(windTab)
         if defaultVal == nil then
             defaultVal = config.Value
         end
-        return self.wind_tab:Dropdown({
+        local el = self.wind_tab:Dropdown({
             Title = title,
             Desc = desc,
             Values = values,
             Value = defaultVal,
             Callback = config.Callback
         })
+        local elWrapper = { wind_element = el }
+        function elWrapper:Set(v)
+            if self.wind_element then
+                if self.wind_element.SetValue then
+                    self.wind_element:SetValue(v)
+                elseif self.wind_element.Set then
+                    self.wind_element:Set(v)
+                end
+            end
+        end
+        return elWrapper
     end
     
     function wrapper:AddTextBox(config)
         local title = config.Title or config.Name or ""
         local placeholder = config.PlaceholderText or config.Placeholder or ""
         local defaultVal = config.Default or config.Value or ""
-        return self.wind_tab:Input({
+        local el = self.wind_tab:Input({
             Title = title,
             Placeholder = placeholder,
             Value = defaultVal,
             Callback = config.Callback
         })
+        local elWrapper = { wind_element = el }
+        function elWrapper:Set(v)
+            if self.wind_element then
+                if self.wind_element.SetValue then
+                    self.wind_element:SetValue(v)
+                elseif self.wind_element.Set then
+                    self.wind_element:Set(v)
+                end
+            end
+        end
+        return elWrapper
     end
     
     function wrapper:AddParagraph(config)
         local title = config.Title or config.Name or ""
         local desc = config.Description or config.Desc or config.Content or ""
-        return self.wind_tab:Paragraph({
+        local el = self.wind_tab:Paragraph({
             Title = title,
             Desc = desc
         })
+        local elWrapper = { wind_element = el }
+        function elWrapper:Set(newDesc)
+            if self.wind_element then
+                if self.wind_element.SetDesc then
+                    self.wind_element:SetDesc(newDesc)
+                elseif self.wind_element.Set then
+                    self.wind_element:Set(newDesc)
+                end
+            end
+        end
+        function elWrapper:SetDesc(newDesc)
+            self:Set(newDesc)
+        end
+        function elWrapper:SetTitle(newTitle)
+            if self.wind_element and self.wind_element.SetTitle then
+                self.wind_element:SetTitle(newTitle)
+            end
+        end
+        return elWrapper
     end
     
     function wrapper:AddDiscordInvite(config)
