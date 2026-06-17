@@ -3734,6 +3734,33 @@ function CheckItemBPCRBPCR(v463)
     end
 end
 local vu32 = loadstring(game:HttpGet("https://pastefy.app/5bk02Q6b/raw"))();
+
+vu32.Themes.Light = {
+    ["Color Hub 1"] = ColorSequence.new({
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(240, 240, 240)),
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 255, 255)),
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(240, 240, 240))
+    }),
+    ["Color Hub 2"] = Color3.fromRGB(245, 245, 245),
+    ["Color Stroke"] = Color3.fromRGB(220, 220, 220),
+    ["Color Theme"] = Color3.fromRGB(65, 150, 255),
+    ["Color Text"] = Color3.fromRGB(30, 30, 30),
+    ["Color Dark Text"] = Color3.fromRGB(80, 80, 80)
+}
+
+vu32.Themes.Rose = {
+    ["Color Hub 1"] = ColorSequence.new({
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 230, 235)),
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 240, 245)),
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 230, 235))
+    }),
+    ["Color Hub 2"] = Color3.fromRGB(255, 235, 240),
+    ["Color Stroke"] = Color3.fromRGB(255, 200, 210),
+    ["Color Theme"] = Color3.fromRGB(255, 105, 180),
+    ["Color Text"] = Color3.fromRGB(70, 30, 40),
+    ["Color Dark Text"] = Color3.fromRGB(120, 70, 80)
+}
+
 local v466 = vu32:MakeWindow({
     Title = "Khoa Dev - Blox Fruit",
     SubTitle = "By Vo Anh Khoa ☑️",
@@ -10080,6 +10107,16 @@ v496:AddButton({
 })
 
 local _ = v496:AddSection({"Cài đặt"})
+
+v496:AddDropdown({
+    Name = "Đổi Giao Diện (Theme)",
+    Description = "Chọn màu sắc hiển thị cho giao diện",
+    Options = {"Darker", "Dark", "Purple", "Light", "Rose"},
+    Default = vu32.Save.Theme or "Darker",
+    Callback = function(theme)
+        vu32:SetTheme(theme)
+    end
+})
 
 v496:AddToggle({
     Name = "Tấn công nhanh (Fast Attack)",
