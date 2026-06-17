@@ -3740,8 +3740,17 @@ local v466 = vu32:MakeWindow({
     SaveFolder = "Khoa Dev | Blox Fruit"
 })
 
+if not isfile("KhoaDevLogo.jpg") then
+    pcall(function()
+        writefile("KhoaDevLogo.jpg", game:HttpGet("https://raw.githubusercontent.com/26110200070-netizen/khoadev-bloxfruit/refs/heads/main/z7946291933044_da5fb04ec77a9890f43db7f7fda2f885.jpg"))
+    end)
+end
+
 v466:AddMinimizeButton({
-    Button = { Image = "rbxassetid://96779554580445", BackgroundTransparency = 1},
+    Button = { 
+        Image = isfile("KhoaDevLogo.jpg") and (getcustomasset or getsynasset)("KhoaDevLogo.jpg") or "rbxassetid://96779554580445", 
+        BackgroundTransparency = 1
+    },
     Size = UDim2.new(0, 40, 0, 40),
     Corner = { CornerRadius = UDim.new(0.5, 0) },
 })
