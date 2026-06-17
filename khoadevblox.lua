@@ -1,5 +1,5 @@
 -- key
-loadstring(game:HttpGet("https://raw.githubusercontent.com/astrapsh128-hash/kskfhfghurbot.py/main/csscsscss%23.lua"))()
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/astrapsh128-hash/kskfhfghurbot.py/main/csscsscss%23.lua"))()
 -- made by melissa
 local SugarLibrary = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/Yomkav2/Sugar-UI/refs/heads/main/Source'))()
 local Notification = SugarLibrary.Notification()
